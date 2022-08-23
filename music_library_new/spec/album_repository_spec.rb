@@ -10,12 +10,24 @@ RSpec.describe AlbumRepository do
   describe AlbumRepository do
     before(:each) { reset_albums_table }
 
-    it "returns a list of albums" do
-      repo = AlbumRepository.new
-      albums = repo.all
-      expect(albums.length).to eq (2)
-      expect(albums.first.id).to eq ("1")
-      expect(albums.first.title).to eq ("OK Computer")
+    context "#all" do
+      it "returns a list of albums" do
+        repo = AlbumRepository.new
+        albums = repo.all
+        expect(albums.length).to eq (2)
+        expect(albums.first.id).to eq ("1")
+        expect(albums.first.title).to eq ("OK Computer")
+      end
+    end
+    
+    context "#find" do
+      it "returns a single album" do
+        repo = AlbumRepository.new
+        album = repo.find(1)
+        expect(album.title).to eq "OK Computer"
+        expect(albums.release_year).to eq 1997
+        expect(albums.artist_id).to eq 1
+      end
     end
   end
 end
